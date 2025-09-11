@@ -14,13 +14,35 @@ class FileTreeNavigator():
     them where ever the user wants to.
 
     """
-    _clipboard = set()
-    _current_path = Path("/.")
+    _clipboard     = set()
+    _current_path  = Path("/.")
+    _current_items = []
     def __init__(self,spawn_path:str="~"):
+        self.set_current_path(Path(spawn_path))
 
-    def navigate_to(self,):
-        pass
-    def set_current_path(self,path:str):
-        new_path = Path(path)
-        if new_path.exists() and
-        pass
+
+    def set_current_path(self,path:Path):
+        if path.exists() and path.is_dir():
+            self._current_path = path
+            self.list_contents()
+
+    def list_contents(self):
+        if self._current_path.exists() and self._current_path.is_dir():
+            folder_items = list(self._current_path.iterdir())
+            child_folders = list(filter(lambda x : x.is_dir(),folder_items))
+            child_files = list(filter(lambda x : x.is_file(),folder_items))
+            self._current_items = child_folders+child_files
+        else:
+            self._current_items = []
+
+    def get_contents(self):
+        return self._current_items
+
+    def add_to_clipboard(self,item):
+        self._clipboard.add(item)
+
+    def list_clipboard(self):
+        return sorted(list(self._clipboard))
+
+    def get_current_path(self):
+        return self._current_path
