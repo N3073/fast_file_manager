@@ -7,10 +7,13 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle(app_title)
 
-        button = QPushButton("Press Me!")
+
         self.setFixedSize(QSize(width, height))
         layout = QVBoxLayout()
-        layout.addWidget(button)
+        top_bar = QHBoxLayout()
+        central_bar = QHBoxLayout()
+        layout.addLayout(top_bar)
+        layout.addLayout(central_bar)
         widget = QWidget()
         widget.setLayout(layout)
         self.setCentralWidget(widget)
