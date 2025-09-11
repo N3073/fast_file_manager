@@ -4,3 +4,5 @@ I was inspired to make this project by my frustration with the windows' file man
 1. Windows' file manager is slow
 2. Can't remove stuff from clipboard without remaking the selection.
 3. Can't see what the clipboard contains.
+
+This project was built using PyQT5 and the pathlib library.
